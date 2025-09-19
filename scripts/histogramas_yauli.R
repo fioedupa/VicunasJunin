@@ -1,0 +1,109 @@
+#############################################
+# Histogramas Vicuñas Yauli
+# Last version: 09-17-2025
+# By: Fiorella Eduardo-Palomino / fioedupa@gmail.com
+#############################################
+
+source("scripts/utils.R")  # importar funciones
+
+# Leer datos Yauli
+datosya <- limpiar_datos("data/histogramasya.csv")
+
+# Calcular barras
+numbarras4 <- pretty(range(datosya$X1997), n = nclass.Sturges(datosya$X1997))
+numbarras5 <- pretty(range(datosya$X2000), n = nclass.Sturges(datosya$X2000))
+numbarras6 <- pretty(range(datosya$X2012), n = nclass.Sturges(datosya$X2012))
+numbarras7 <- pretty(range(datosya$X2024), n = nclass.Sturges(datosya$X2024))
+
+# Histograma 1997
+gr1ya<-ggplot(data.frame(datosya$X1997), aes(x = datosya$X1997)) + 
+  geom_histogram(breaks = numbarras4, color = "black", fill = "darkgreen")+
+  labs( x = "1997", y = "Frecuencia")+
+  geom_point(aes(x = 1802, y = 0), color = "#486349", size = 3) +
+  geom_point(aes(x = 1752, y = 0), color = "#689D72", size = 3) +
+  geom_point(aes(x = 10822, y = 0), color = "#689D72", size = 3) +
+  geom_point(aes(x = 10772, y = 0), color = "#689D72", size = 3) +
+  # Nombres de los puntos
+  annotate("text", x = 1802, y = 0,  label = str_wrap("valor real sin filtro", 
+                                                      width = 8),
+           color = "#486349", angle=0, hjust=1, vjust = -0.5, size = 3) +
+  annotate("text", x = 1752, y = 0, label = str_wrap("valor con filtro temporal y sin cercos permanentes", 
+                                                     width = 8),
+           color = "#689D72", angle=0, hjust = -0.1, vjust = -0.2, size = 3) +
+  annotate("text", x = 10822, y = 0,  label = str_wrap("Ovinos + valor real sin filtro",width = 8),color = "#486349", angle=0, hjust=1, vjust = -0.5, size = 3) +
+  annotate("text", x = 10772, y = 0,  label = str_wrap("Ovinos + valor con filtro",width = 8),color = "#486349", angle=0, hjust=1, vjust = -0.5, size = 3) +
+  coord_cartesian(xlim = c(1700, 11000)) +
+  scale_x_break(c(1825, 1930),scales =1) +  
+  scale_x_break(c(1960, 10700),scales =1)+
+  #scale_x_break(c(12500, 19000),scales = 0.5)+
+  theme_classic() 
+gr1ya
+ggsave("results/HistogramaYaOV1997.png", gr1ya, width = 8, height = 5, dpi = 300)
+
+gr2ya<-ggplot(data.frame(datosya$X2000), aes(x = datosya$X2000)) + 
+  geom_histogram(breaks = numbarras5, color = "black", fill = "darkred")+
+  labs( x = "2000", y = "Frecuencia")+
+  geom_point(aes(x = 2117, y = 1), color = "#B71C1C", size = 3) +
+  geom_point(aes(x = 2095, y = 1), color = "#AE123A", size = 3) +
+  geom_point(aes(x = 21410, y = 1), color = "#AE123A", size = 3) +
+  geom_point(aes(x = 21388, y = 1), color = "#AE123A", size = 3) +
+  # Nombres de los puntos
+  annotate("text", x = 2117, y = 1,  label = str_wrap("valor real sin filtro", 
+                                                      width = 8),
+           color = "#B71C1C", angle=0, hjust=1, vjust = -0.5, size = 3) +
+  annotate("text", x = 2095, y = 0, label = str_wrap("valor con filtro temporal y sin cercos permanentes", 
+                                                     width = 8),
+           color = "#AE123A", angle=0, hjust = -0.1, vjust = -0.2, size = 2) +
+  annotate("text", x = 21410, y = 0, label = str_wrap("Ovinos + valor con filtro temporal y sin cercos permanentes", 
+                                                      width = 8),
+           color = "#AE123A", angle=0, hjust = 1, vjust = -0.2, size = 2) +
+  annotate("text", x = 21388, y = 0, label = str_wrap("Ovinos + valor real sin filtro", 
+                                                      width = 8),
+           color = "#AE123A", angle=0, hjust = -0.1, vjust = -0.2, size = 2) +
+  coord_cartesian(xlim = c(2000, 21500)) +
+  scale_x_break(c(2150,4900),scales =1) +  
+  scale_x_break(c(5050, 21380),scales =1)+
+  #scale_x_break(c(22000, 28500),scales = 1)+
+  theme_classic() 
+gr2ya
+ggsave(filename = "HistogramaYaOV2000.png", plot = gr2ya, width = 8, height = 5, units = "in", dpi = 300)
+
+options(scipen = 999)
+
+gr3ya<-ggplot(data.frame(datosya$X2012), aes(x = datosya$X2012)) + 
+  geom_histogram(breaks = numbarras6, color = "black", fill = "darkblue")+
+  labs( x = "2012", y = "Frecuencia")+
+  geom_point(aes(x = 8078, y = 0), color = "blue", size = 3) +
+  geom_point(aes(x = 22810, y = 0), color = "blue", size = 3) +
+  annotate("text", x = 8078, y = 0,  label = str_wrap("valor real sin filtro",width = 8),
+           color = "blue", angle=0, hjust=-0.1, vjust = -0.5, size = 3) +
+  annotate("text", x = 22810, y = 0,  label = str_wrap("Ovinos + valor real sin filtro",width = 8),
+           color = "blue", angle=0, hjust=1.5, vjust = -0.5, size = 3) +
+  coord_cartesian(xlim = c(8000,40000)) +
+  #scale_x_break(c(5000, 22700),scales =1) + 
+  #scale_x_break(c(105000, 135000),scales =1) +
+  theme_classic() 
+gr3ya
+ggsave(filename = "HistogramaYaOV2012.png", plot = gr3ya, width = 10, height = 5, units = "in", dpi = 300)
+
+gr4ya<-ggplot(data.frame(datosya$X2024), aes(x = datosya$X2024)) + 
+  geom_histogram(breaks = numbarras7, color = "black", fill = "darkorange")+
+  labs( x = "2024", y = "Frecuencia")+
+  scale_x_continuous(labels = scales::number_format(accuracy = 1))+
+  theme_classic() 
+gr4ya
+ggsave(filename = "HistogramaYa2024.png", plot = gr4ya, width = 10, height = 5, units = "in", dpi = 300)
+
+# Combinar histogramas simples
+gr_simple <- (
+  ggplot(data.frame(datosya$X1997), aes(x = datosya$X1997)) + geom_histogram(breaks = numbarras4, fill = "darkgreen") +
+    ggplot(data.frame(datosya$X2000), aes(x = datosya$X2000)) + geom_histogram(breaks = numbarras5, fill = "darkred") +
+    ggplot(data.frame(datosya$X2012), aes(x = datosya$X2012)) + geom_histogram(breaks = numbarras6, fill = "darkblue") +
+    ggplot(data.frame(datosya$X2024), aes(x = datos$X2024)) + geom_histogram(breaks = numbarras7, fill = "darkorange")
+)
+gr_simple
+
+# Calcular moda
+modasYa <- sapply(datosya, moda)
+modasYa_df <- data.frame(Anio = names(modasYa), Valor_mas_frecuente = modasYa)
+write.csv(modasYa_df, "results/modas_yauli.csv", row.names = FALSE)
