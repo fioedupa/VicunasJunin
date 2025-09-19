@@ -1,0 +1,26 @@
+{
+    "id": "0447257E",
+    "path": "~/GitHub/VicunasJunin/scripts/histogramas_junin.R",
+    "project_path": "scripts/histogramas_junin.R",
+    "type": "r_source",
+    "hash": "4202725544",
+    "contents": "",
+    "dirty": false,
+    "created": 1758290742585.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "113,65",
+        "scrollLine": "96"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1758290846,
+    "encoding": "ISO8859-1",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1758290846334,
+    "read_only": false,
+    "read_only_alternatives": []
+}

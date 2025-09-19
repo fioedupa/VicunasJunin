@@ -1,16 +1,16 @@
 #############################################
-# Histogramas Vicuñas Junín
+# Histogramas VicuÃ±as JunÃ­n
 # Last version: 09-17-2025
 # By: Fiorella Eduardo-Palomino / fioedupa@gmail.com
 #############################################
 
 source("scripts/utils.R")  # importar funciones
 
-# Leer datos Junín
+# Leer datos JunÃ­n
 datos <- limpiar_datos("data/histogramasju.csv")
 str(datos)
 
-# Calcular número de barras por año
+# Calcular nÃºmero de barras por aÃ±o
 numbarras <- pretty(range(datos$X1997), n = nclass.Sturges(datos$X1997))
 numbarras1 <- pretty(range(datos$X2000), n = nclass.Sturges(datos$X2000))
 numbarras2 <- pretty(range(datos$X2012), n = nclass.Sturges(datos$X2012))
